@@ -1,2 +1,18 @@
 # elximeno
 A rabbit message processor in node js.
+
+
+
+
+
+
+### Setup Rabbit
+-- Make sure that you have docker (desktop or otherwise the engine)
+-- from the terminal run the following commands
+1. docker pull rabbitmq:management
+*there are two port mappings. One is for the rabbit message and the 
+*other is for the management console
+2. docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
+
+Access rabbit at http://localhost:15672
+user/pwd is guest/guest
