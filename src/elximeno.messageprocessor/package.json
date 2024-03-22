@@ -1,0 +1,25 @@
+{
+  "name": "jobprocessor",
+  "version": "0.0.1",
+  "description": "A simple rabbit mq work processor",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "jobprocessor"
+  },
+  "keywords": [
+    "rabbitmq",
+    "job",
+    "queue",
+    "processor"
+  ],
+  "author": "Fernando Zamora",
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.10.3"
+  }
+}
