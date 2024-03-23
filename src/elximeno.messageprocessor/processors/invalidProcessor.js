@@ -3,6 +3,8 @@
 class InvalidProcessor {
     constructor(queueName) {
       this.queueName = queueName || "com.mycompany.domain.doesnotexist";
+      this.exchangeName = "com.mycompany.domain.user";
+      this.routingKey = "";
     }
   
     doWork(data, onFinish) {

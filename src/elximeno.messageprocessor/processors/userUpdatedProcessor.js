@@ -1,6 +1,8 @@
 class UserUpdatedProcessor {
     constructor(queueName) {
       this.queueName = queueName || "com.mycompany.domain.userchanged";
+      this.exchangeName = "com.mycompany.domain.user";
+      this.routingKey = "";
     }
   
     doWork(data, onFinish) {

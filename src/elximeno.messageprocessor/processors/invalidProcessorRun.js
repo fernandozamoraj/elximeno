@@ -3,6 +3,8 @@
 class InvalidProcessorRun {
     constructor(queueName) {
       this.queueName = queueName || "com.mycompany.domain.norunner";
+      this.exchangeName = "com.mycompany.domain.user";
+      this.routingKey = "";
     }
   
     run(data, onFinish) {
