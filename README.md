@@ -1,10 +1,7 @@
 # elximeno
 A rabbit message processor in node js.
 
-
-
-
-
+This project is an example of how to configure a queue message processor engine in node that listens to messages and dispatches them to processor objects.
 
 ### Setup Rabbit
 -- Make sure that you have docker (desktop or otherwise the engine)

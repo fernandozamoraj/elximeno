@@ -1,27 +1,19 @@
-const amqp = require('amqplib');
+const ProcessorEngine = require('./processorEngine.js');
+const StandardProcessor = require('./processors/standardProcessor.js');
+const UserUpdatedProcessor = require('./processors/userUpdatedProcessor.js');
+const InvalidProcessor = require('./processors/invalidProcessor.js');
+const InvalidProcessorRun = require('./processors/invalidProcessorRun.js');
+// Example usage
+const processorEngine = new ProcessorEngine();
 
-async function consumeQueue() {
-  try {
-    const connection = await amqp.connect('amqp://localhost'); // Replace 'localhost' with your RabbitMQ server address
-    const channel = await connection.createChannel();
-    
-    await channel.assertQueue('com.mycompany.domain.queue', { durable: true });
+// Configure the processor
+processorEngine.configure({ server: 'amqp://localhost'});
 
-    console.log('Waiting for messages...');
+//Add processors
+processorEngine.addProcessor(new StandardProcessor());
+processorEngine.addProcessor(new UserUpdatedProcessor());
+processorEngine.addProcessor(new InvalidProcessor());
+processorEngine.addProcessor(new InvalidProcessorRun());
 
-    channel.consume('com.mycompany.domain.queue', (message) => {
-      if (message !== null) {
-        const content = message.content.toString();
-        console.log('Received message:', content);
-
-        // Process the message here...
-
-        channel.ack(message); // Acknowledge that the message has been processed
-      }
-    });
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
-consumeQueue();
+// Run the processor engine
+processorEngine.run();
