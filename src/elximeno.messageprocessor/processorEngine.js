@@ -35,9 +35,6 @@ class ProcessorEngine {
                             if(ackMessage) channel.ack(message);
                         }    
                     );
-            
-                    //TODO: remove this
-                    //channel.ack(message); // Acknowledge that the message has been processed
                   }
                   catch(error){
                     try{
@@ -48,10 +45,8 @@ class ProcessorEngine {
                     }
                     console.log("skipping processor");
                   }
-
               }
           });
-
         } catch (error) {
           try{
             console.error(`Error processing for queue: ${processor.queueName}`, error);
@@ -61,7 +56,6 @@ class ProcessorEngine {
           }
         }
       }
-      
       console.log(`Listening for messages on ${this.config.server || 'amqp://localhost'}`);
     }
   
