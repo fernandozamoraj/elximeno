@@ -11,15 +11,12 @@ class ProcessorEngine {
     }
   
     async run() {
-    
       const connection = await amqp.connect(this.config.server || 'amqp://localhost'); // Replace 'localhost' with your RabbitMQ server address
     
       for (const processor of this.processors) {
         try {
           let channel = await connection.createChannel();
-
           await channel.assertQueue(processor.queueName, { durable: true });
-    
           console.log(`Waiting for messages on queue: ${processor.queueName}`);
       
           channel.consume(processor.queueName, (message) => {
